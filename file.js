@@ -5,15 +5,15 @@ const fs = require("fs");
 //creates a folder
 fs.mkdir("tutorial", (err) => {
   if (err) console.log(err);
-  else
   //deletes a folder
+  else
     fs.rmdir("tutorial", (err) => {
       if (err) console.log(err);
       else console.log("delete success");
     });
 });
 
-//create a folder and make a file winside it
+//create a folder and make a file within it
 
 fs.mkdir("tutorial", (err) => {
   if (err) console.log(err);
@@ -47,7 +47,12 @@ fs.readdir("examples", (err, files) => {
     for (let file of files) {
       fs.unlink("./examples/" + file, (err) => {
         if (err) console.log(err);
-        else console.log("files delete success");
+        else
+        //once the files are deleted you can then delete the folder 
+          fs.rmdir("examples", (err) => {
+            if (err) console.log(err);
+            else console.log("folder delete success");
+          });
       });
     }
 });
