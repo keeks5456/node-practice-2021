@@ -1,22 +1,25 @@
 const express = require("express");
 
 const app = express();
-
+const path = require('path')
+app.use('/public', express.static(path.join(__dirname)))
 //takes in a root args, and callback functon with request and respond
 app.get("/", (req, res) => {
   //send this response to the browser
   res.send("hello world");
 });
 
-app.get("/example", (req, res) => {
-  res.send("hitting example route");
-});
-//params data
-app.get("/example/:name/:age", (req, res) => {
-  console.log(req.params);
-  console.log(req.query); //==> {} because we havent passed in anything
-  res.send(req.params.name + " " + req.params.age);
-});
+// app.get("/example", (req, res) => {
+//   res.send("hitting example route");
+// });
+// //params data
+// app.get("/example/:name/:age", (req, res) => {
+//   console.log(req.params);
+//   console.log(req.query); //==> {} because we havent passed in anything
+//   res.send(req.params.name + " " + req.params.age);
+// });
+
+
 
 //give a port to listen to
 app.listen(3000);
